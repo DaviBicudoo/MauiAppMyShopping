@@ -10,6 +10,38 @@
     </ContentPage.ToolbarItems>
 
     <VerticalStackLayout>
-        
+        <SearchBar x:Name="searchTxt" Placeholder="Search a product" />
+
+        <ListView x:Name="productList">
+            <!-- List header -->
+            <ListView.Header>
+                <Grid ColumnDefinitions="*, *, *, *, *" >
+                    <Label Grid.Column="0" Text="ID" />
+                    <Label Grid.Column="1" Text="Description" />
+                    <Label Grid.Column="2" Text="Amount" />
+                    <Label Grid.Column="3" Text="Price" />
+                    <Label Grid.Column="4" Text="Total" />
+                </Grid>
+            </ListView.Header>
+            
+            <!-- List content -->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Edit" />
+                            <MenuItem Text="Remove" />
+                        </ViewCell.ContextActions>
+                        <Grid ColumnDefinitions="*, *, *, *, *">
+                            <Label Grid.Column="0" Text="{Binding Id}" />
+                            <Label Grid.Column="1" Text="{Binding Description}" />
+                            <Label Grid.Column="2" Text="{Binding Amount}" />
+                            <Label Grid.Column="3" Text="{Binding Price}" />
+                            <Label Grid.Column="4" Text="{Binding Total}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

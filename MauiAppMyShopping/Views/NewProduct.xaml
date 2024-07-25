@@ -12,6 +12,7 @@
         
         <Label Text="Product description" />
         <Entry Placeholder="What's your product?" 
+               Keyboard="Text"
                x:Name="productDescriptionTxt" />
 
         <Label Text="Product amout" />

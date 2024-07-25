@@ -9,5 +9,6 @@ namespace MauiAppMyShopping.Models
         public string? Description { get; set; }
         public int Amount { get; set; }
         public double Price { get; set; }
+        public double Total { get => Convert.ToDouble(Amount) * Price; }
     }
 }

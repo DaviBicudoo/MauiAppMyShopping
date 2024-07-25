@@ -1,11 +1,25 @@
+using MauiAppMyShopping.Models;
+using System.Collections.ObjectModel;
+
 namespace MauiAppMyShopping.Views;
 
 public partial class ProductList : ContentPage
 {
+	ObservableCollection<Product> list = new ObservableCollection<Product>();
+
 	public ProductList()
 	{
 		InitializeComponent();
+
+		productList.ItemsSource = list;
 	}
+
+    protected async override void OnAppearing()
+    {
+		List<Product> temporaryList = await App.Database.GetAll();
+
+		temporaryList.ForEach(x => list.Add(x));
+    }
 
     private void ToolbarItem_Clicked(object sender, EventArgs e)
     {

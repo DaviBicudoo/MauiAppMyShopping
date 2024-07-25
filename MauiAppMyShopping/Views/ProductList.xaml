@@ -5,7 +5,7 @@
              Title="Product List">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Total" />
+        <ToolbarItem Text="Total" Clicked="ToolbarItem_Clicked_1"/>
         <ToolbarItem Text="New Product" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 

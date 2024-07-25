@@ -43,4 +43,13 @@ public partial class ProductList : ContentPage
 
         temporaryList.ForEach(x => list.Add(x));
     }
+
+    private void ToolbarItem_Clicked_1(object sender, EventArgs e)
+    {
+		double total = list.Sum(x => x.Total);
+
+		string message = $"The total price is {total:c}";
+
+		DisplayAlert("My order", message, "OK");
+    }
 }

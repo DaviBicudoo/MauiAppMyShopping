@@ -32,4 +32,15 @@ public partial class ProductList : ContentPage
 			DisplayAlert("OPS!", ex.Message, "Exit");
 		}
     }
+
+    private async void searchTxt_TextChanged(object sender, TextChangedEventArgs e)
+    {
+		string query = e.NewTextValue;
+
+		list.Clear();
+
+        List<Product> temporaryList = await App.Database.Search(query);
+
+        temporaryList.ForEach(x => list.Add(x));
+    }
 }

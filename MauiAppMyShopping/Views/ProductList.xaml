@@ -10,7 +10,9 @@
     </ContentPage.ToolbarItems>
 
     <VerticalStackLayout>
-        <SearchBar x:Name="searchTxt" Placeholder="Search a product" />
+        <SearchBar x:Name="searchTxt" 
+                   Placeholder="Search a product" 
+                   TextChanged="searchTxt_TextChanged"/>
 
         <ListView x:Name="productList">
             <!-- List header -->

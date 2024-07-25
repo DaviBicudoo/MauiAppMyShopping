@@ -2,11 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMyShopping.Views.ProductList"
-             Title="ProductList">
+             Title="Product List">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Total" />
+        <ToolbarItem Text="New Product" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
     </VerticalStackLayout>
 </ContentPage>

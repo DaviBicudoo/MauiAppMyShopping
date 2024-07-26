@@ -24,13 +24,11 @@ namespace MauiAppMyShopping.Helpers
         // Update method
         public Task<List<Product>> Update(Product product) 
         {
-            string SQL = "INSERT Product SET Description=?, Amount=?, Price=? WHERE Id=?";
+            string SQL = "UPDATE Product SET Description=?, Amount=?, Price=? WHERE Id=?";
 
-            return _connection.QueryAsync<Product>(SQL, product); 
-
-            //return _connection.QueryAsync<Product>(
-            //    SQL, product.Description, product.Amount, product.Price, product.Id
-            //    );
+            return _connection.QueryAsync<Product>(
+                SQL, product.Description, product.Amount, product.Price, product.Id
+                );
         }
 
         // Delete method

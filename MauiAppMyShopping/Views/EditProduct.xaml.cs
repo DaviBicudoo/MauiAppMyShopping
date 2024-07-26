@@ -13,16 +13,19 @@ public partial class EditProduct : ContentPage
     {
 		try
 		{
-			Product product = new Product
-			{
-				Description = productDescriptionTxt.Text,
-				Amount = Convert.ToInt16(productAmountTxt.Text),
-				Price = Convert.ToDouble(productUnitPrice.Text)
-			};
+            Product anexedProduct = BindingContext as Product;
 
-			await App.Database.Update(product);
+            Product product = new Product
+            {
+                Id = anexedProduct.Id,
+                Description = productDescriptionTxt.Text,
+                Amount = Convert.ToInt16(productAmountTxt.Text),
+                Price = Convert.ToDouble(productUnitPrice.Text)
+            };
 
-            await DisplayAlert(":)", "Success", "OK");
+            await App.Database.Update(product);
+
+            await DisplayAlert("Updated", "Success", "OK");
 
             await Navigation.PopAsync();
         }

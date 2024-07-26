@@ -78,16 +78,17 @@ public partial class ProductList : ContentPage
 		}
     }
 
+    // Delete product
     private async void MenuItem_Clicked(object sender, EventArgs e)
     {
-		// Delete product
+		
 		try
 		{
 			MenuItem selectedMenuItem = sender as MenuItem;
 
 			Product product = selectedMenuItem.BindingContext as Product;
 
-			bool confirm = await DisplayAlert("Warning!", $"Do you really want to exclude this product? ({product.Description}", 
+			bool confirm = await DisplayAlert("Warning!", $"Do you really want to exclude this product? ({product.Description})", 
 				"Yes", "No");
 
 			if(confirm)
@@ -103,10 +104,22 @@ public partial class ProductList : ContentPage
 		}
     }
 
-    private async void MenuItem_Clicked_1(object sender, EventArgs e)
+	// Edit product
+    private void productList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-		// Edit product 
+        try
+        {
+            Product product = e.SelectedItem as Product;
 
-		await Navigation.PushAsync(new Views.EditProduct());
+            Navigation.PushAsync(new Views.EditProduct
+            {
+                BindingContext = product
+            });
+
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("OPS!", ex.Message, "OK");
+        }
     }
 }

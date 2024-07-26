@@ -14,7 +14,7 @@
                    Placeholder="Search a product" 
                    TextChanged="searchTxt_TextChanged"/>
 
-        <ListView x:Name="productList">
+        <ListView x:Name="productList" ItemSelected="productList_ItemSelected">
             <!-- List header -->
             <ListView.Header>
                 <Grid ColumnDefinitions="*, *, *, *, *" >
@@ -31,8 +31,6 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text="Edit" 
-                                      Clicked="MenuItem_Clicked_1"/>
                             <MenuItem Text="Remove" 
                                       Clicked="MenuItem_Clicked"/>
                         </ViewCell.ContextActions>

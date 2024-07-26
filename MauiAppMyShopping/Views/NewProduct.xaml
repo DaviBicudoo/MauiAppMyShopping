@@ -8,7 +8,7 @@
         <ToolbarItem Text="Save" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 
-        <VerticalStackLayout Spacing="10" Padding="10">
+    <VerticalStackLayout Spacing="10" Padding="10">
         
         <Label Text="Product description" />
         <Entry Placeholder="What's your product?" 

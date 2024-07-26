@@ -16,9 +16,19 @@ public partial class ProductList : ContentPage
 
     protected async override void OnAppearing()
     {
-		List<Product> temporaryList = await App.Database.GetAll();
+		try
+		{
+			list.Clear(); // It clears the list view every time we go back to the window
 
-		temporaryList.ForEach(x => list.Add(x));
+			List<Product> temporaryList = await App.Database.GetAll();
+
+			temporaryList.ForEach(x => list.Add(x));
+
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("OPS!", ex.Message, "OK");
+		}
     }
 
     private void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -35,21 +45,68 @@ public partial class ProductList : ContentPage
 
     private async void searchTxt_TextChanged(object sender, TextChangedEventArgs e)
     {
-		string query = e.NewTextValue;
+		try
+		{
+            string query = e.NewTextValue;
 
-		list.Clear();
+            list.Clear();
 
-        List<Product> temporaryList = await App.Database.Search(query);
+            List<Product> temporaryList = await App.Database.Search(query);
 
-        temporaryList.ForEach(x => list.Add(x));
+            temporaryList.ForEach(x => list.Add(x));
+
+        } catch(Exception ex)
+		{
+			await DisplayAlert("OPS!", ex.Message, "OK");
+		}
     }
 
     private void ToolbarItem_Clicked_1(object sender, EventArgs e)
     {
-		double total = list.Sum(x => x.Total);
+		try
+		{
+            double total = list.Sum(x => x.Total);
 
-		string message = $"The total price is {total:c}";
+            string message = $"The total price is {total:c}";
 
-		DisplayAlert("My order", message, "OK");
+            DisplayAlert("My order", message, "OK");
+
+        }
+		catch (Exception ex)
+		{
+			DisplayAlert("OPS!", ex.Message, "OK");
+		}
+    }
+
+    private async void MenuItem_Clicked(object sender, EventArgs e)
+    {
+		// Delete product
+		try
+		{
+			MenuItem selectedMenuItem = sender as MenuItem;
+
+			Product product = selectedMenuItem.BindingContext as Product;
+
+			bool confirm = await DisplayAlert("Warning!", $"Do you really want to exclude this product? ({product.Description}", 
+				"Yes", "No");
+
+			if(confirm)
+			{
+				await App.Database.Delete(product.Id);
+				list.Remove(product);
+			}
+
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("OPS!", ex.Message, "OK");
+		}
+    }
+
+    private async void MenuItem_Clicked_1(object sender, EventArgs e)
+    {
+		// Edit product 
+
+		await Navigation.PushAsync(new Views.EditProduct());
     }
 }

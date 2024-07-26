@@ -26,11 +26,11 @@ namespace MauiAppMyShopping.Helpers
         {
             string SQL = "INSERT Product SET Description=?, Amount=?, Price=? WHERE Id=?";
 
-            // _connection.QueryAsync<Product>(SQL, product); --> "Easy way"
+            return _connection.QueryAsync<Product>(SQL, product); 
 
-            return _connection.QueryAsync<Product>(
-                SQL, product.Description, product.Amount, product.Price, product.Id
-                );
+            //return _connection.QueryAsync<Product>(
+            //    SQL, product.Description, product.Amount, product.Price, product.Id
+            //    );
         }
 
         // Delete method
